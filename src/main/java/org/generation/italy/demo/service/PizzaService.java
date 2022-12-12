@@ -10,6 +10,8 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class PizzaService {
 	
@@ -36,6 +38,7 @@ public class PizzaService {
 		return P.findByNameContainingIgnoreCase(name);
 	}
 	
+	@Transactional
 	public List<Pizza> findAllPromotions(){
 		
 		List<Pizza> pizzas = P.findAll();

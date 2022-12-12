@@ -1,6 +1,8 @@
 package org.generation.italy.demo.pojo;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Formatter;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -70,7 +72,7 @@ public class Promozione {
 		this.id = id;
 	}
 
-	public void setStartDate(LocalDate startDate) {
+	public void setStartDate(LocalDate startDate) {		
 		this.startDate = startDate;
 	}
 

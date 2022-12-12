@@ -86,7 +86,7 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		
 		List<Pizza> pizzasPromo = P.findAllPromotions();
 		
-		for (Pizza pizza : pizzas) {
+		for (Pizza pizza : pizzasPromo) {
 			
 			System.out.println(pizza);
 			
