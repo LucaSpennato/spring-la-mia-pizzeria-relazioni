@@ -1,6 +1,7 @@
 package org.generation.italy.demo;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.generation.italy.demo.pojo.Drink;
 import org.generation.italy.demo.pojo.Pizza;
@@ -60,6 +61,44 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		ps.save(pz1);
 		ps.save(pz2);
 		ps.save(pz3);
+		
+		System.err.println(pz1);
+		
+//		ps.delete(pz3);
+		
+		System.out.println("EAGER, NO NEED FOR SERV------------------------------------------");
+		
+		List<Pizza> pizzas = P.findAll();
+		
+		for (Pizza pizza : pizzas) {
+			
+			System.out.println(pizza);
+			
+			for (Promozione pz : pizza.getPromotions()) {
+				
+				System.err.println("\n" + pz);
+				
+			}
+			
+		}
+		
+		System.out.println("Lazy but with serv method-------------------------------------------");
+		
+		List<Pizza> pizzasPromo = P.findAllPromotions();
+		
+		for (Pizza pizza : pizzas) {
+			
+			System.out.println(pizza);
+			
+			for (Promozione pz : pizza.getPromotions()) {
+				
+				System.err.println("\n" + pz);
+				
+			}
+			
+		}
+		
+		
 	}
 
 }

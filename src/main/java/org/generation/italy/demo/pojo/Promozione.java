@@ -2,6 +2,7 @@ package org.generation.italy.demo.pojo;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -81,5 +82,10 @@ public class Promozione {
 		this.title = title;
 	}
 	
+	@Override
+	public String toString() {
+		return getTitle() + " - " + getStartDate() + " - " + getEndDate()
+			+ "\n" + getPizza() ;
+	}
 	
 }

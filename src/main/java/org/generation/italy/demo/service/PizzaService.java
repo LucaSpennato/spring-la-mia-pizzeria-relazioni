@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.generation.italy.demo.pojo.Drink;
 import org.generation.italy.demo.pojo.Pizza;
 import org.generation.italy.demo.repo.PizzaRepo;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +34,17 @@ public class PizzaService {
 	
 	public List<Pizza> findPizzaByName(String name){
 		return P.findByNameContainingIgnoreCase(name);
+	}
+	
+	public List<Pizza> findAllPromotions(){
+		
+		List<Pizza> pizzas = P.findAll();
+		
+		for (Pizza pizza : pizzas) {
+			Hibernate.initialize(pizza.getPromotions());
+		}
+		
+		return pizzas;
+		
 	}
 }
