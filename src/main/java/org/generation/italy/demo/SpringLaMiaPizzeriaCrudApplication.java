@@ -1,9 +1,13 @@
 package org.generation.italy.demo;
 
+import java.time.LocalDate;
+
 import org.generation.italy.demo.pojo.Drink;
 import org.generation.italy.demo.pojo.Pizza;
+import org.generation.italy.demo.pojo.Promozione;
 import org.generation.italy.demo.service.DrinkService;
 import org.generation.italy.demo.service.PizzaService;
+import org.generation.italy.demo.service.PromoServ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,6 +20,8 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 	private PizzaService P;
 	@Autowired
 	private DrinkService d;
+	@Autowired
+	private PromoServ ps;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringLaMiaPizzeriaCrudApplication.class, args);
@@ -43,6 +49,17 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		d.save(d1);
 		d.save(d2);
 		d.save(d3);
+		
+		// Promo
+		
+		Promozione pz1 = new Promozione("Promo1", LocalDate.parse("2222-11-11"), LocalDate.parse("2222-12-12"), p1);
+		Promozione pz2 = new Promozione("Promo2", LocalDate.parse("2222-11-11"), LocalDate.parse("2222-12-12"), p1);
+		Promozione pz3 = new Promozione("Promo3", LocalDate.parse("2222-11-11"), LocalDate.parse("2222-12-12"), p3);
+		
+		
+		ps.save(pz1);
+		ps.save(pz2);
+		ps.save(pz3);
 	}
 
 }

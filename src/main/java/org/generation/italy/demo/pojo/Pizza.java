@@ -1,5 +1,7 @@
 package org.generation.italy.demo.pojo;
 
+import java.util.List;
+
 import org.generation.italy.demo.interfaces.PriceableInt;
 
 import io.micrometer.common.lang.Nullable;
@@ -8,7 +10,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -38,6 +43,9 @@ public class Pizza implements PriceableInt  {
 	@Column
 	private int price;
 	
+	@OneToMany(mappedBy = "pizza")
+	private List<Promozione> promotions;
+	
 	public Pizza() { }
 	
 	public Pizza(String name, String description, int price ) {
@@ -48,6 +56,16 @@ public class Pizza implements PriceableInt  {
 		
 	}
 	
+	
+	
+	public List<Promozione> getPromotions() {
+		return promotions;
+	}
+
+	public void setPromotions(List<Promozione> promotions) {
+		this.promotions = promotions;
+	}
+
 	public int getId() {
 		return id;
 	}
