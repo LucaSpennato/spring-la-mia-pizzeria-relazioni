@@ -6,14 +6,17 @@
 </head>
 <body>
 
-	<h1>Pizzas with promos</h1>
+	<h1>Promos</h1>
+	<a href="/promozioni/create">Create</a>
 	
 	<ul>
-		<li th:each="pizza : ${pizzas}" th:object="${pizza}">
-			[[*{id}]] - [[*{name}]] - [[*{price}]]
-			<div th:each="promo : *{promotions}" th:object="${promo}">
-				[[*{title}]]
-			</div>
+		<li th:each="promo : ${promos}" th:object="${promo}">
+			[[*{id}]] - [[*{title}]]
+			<ul>
+				<li th:each="pizza : ${promo.getPizza()}" th:object="${pizza}">
+					[[*{id}]] - [[*{name}]]
+				</li>
+			</ul>
 		</li>
 	</ul>
 	

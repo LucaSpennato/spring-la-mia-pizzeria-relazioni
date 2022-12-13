@@ -53,9 +53,9 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		
 		// Promo
 		
-		Promozione pz1 = new Promozione("Promo1", LocalDate.parse("2222-11-11"), LocalDate.parse("2222-12-12"), p1);
-		Promozione pz2 = new Promozione("Promo2", LocalDate.parse("2222-11-11"), LocalDate.parse("2222-12-12"), p1);
-		Promozione pz3 = new Promozione("Promo3", LocalDate.parse("2222-11-11"), LocalDate.parse("2222-12-12"), p3);
+		Promozione pz1 = new Promozione("Promo1", "2222-11-11", "2222-12-12", p1);
+		Promozione pz2 = new Promozione("Promo2", "2222-11-11", "2222-12-12", p1);
+		Promozione pz3 = new Promozione("Promo3", "2222-11-11", "2222-12-12", p3);
 		
 		
 		ps.save(pz1);

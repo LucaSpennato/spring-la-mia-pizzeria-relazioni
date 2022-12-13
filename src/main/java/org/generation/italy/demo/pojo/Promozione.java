@@ -32,12 +32,12 @@ public class Promozione {
 	private String title;
 	
 	@ManyToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn(nullable = true)
 	private Pizza pizza;
 	
 	public Promozione() { }
 	
-	public Promozione(String title, LocalDate startDate, LocalDate endDate, Pizza p) {
+	public Promozione(String title, String startDate, String endDate, Pizza p) {
 		setTitle(title);
 		setStartDate(startDate);
 		setEndDate(endDate);
@@ -72,12 +72,17 @@ public class Promozione {
 		this.id = id;
 	}
 
-	public void setStartDate(LocalDate startDate) {		
-		this.startDate = startDate;
+	public void setStartDate(String startDate) {
+		
+		LocalDate sD = LocalDate.parse(startDate);
+		
+		this.startDate = sD;
 	}
 
-	public void setEndDate(LocalDate endDate) {
-		this.endDate = endDate;
+	public void setEndDate(String endDate) {
+		
+		LocalDate eD = LocalDate.parse(endDate);
+		this.endDate = eD;
 	}
 
 	public void setTitle(String title) {
