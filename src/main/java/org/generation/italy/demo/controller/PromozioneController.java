@@ -1,6 +1,7 @@
 package org.generation.italy.demo.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.generation.italy.demo.pojo.Pizza;
 import org.generation.italy.demo.pojo.Promozione;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -47,9 +49,6 @@ public class PromozioneController {
 		
 		model.addAttribute("pizzas", pizzas);
 		
-		System.err.println("-----------------------------------");
-		System.err.println(pizzas);
-		
 		return "createPromo";
 	}
 	
@@ -57,6 +56,18 @@ public class PromozioneController {
 	public String storePromo(@Valid Promozione promo) {
 
 		promoServ.save(promo);
+		
+		return "redirect:/promozioni";
+	}
+	
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable("id") int id) {
+		
+		
+		Optional<Promozione> opt = promoServ.findPromozioneById(id);
+		Promozione p = opt.get();
+		
+		promoServ.delete(p);
 		
 		return "redirect:/promozioni";
 	}

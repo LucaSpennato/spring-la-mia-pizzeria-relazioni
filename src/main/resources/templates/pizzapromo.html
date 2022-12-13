@@ -12,6 +12,9 @@
 	<ul>
 		<li th:each="promo : ${promos}" th:object="${promo}">
 			[[*{id}]] - [[*{title}]]
+			<div>
+				<a th:href="@{/promozioni/delete/{id} (id = ${promo.id})}">Delete</a>
+			</div>
 			<ul>
 				<li th:each="pizza : ${promo.getPizza()}" th:object="${pizza}">
 					[[*{id}]] - [[*{name}]]
