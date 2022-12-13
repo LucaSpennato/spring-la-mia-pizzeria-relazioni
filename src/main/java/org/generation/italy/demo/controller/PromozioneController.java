@@ -32,8 +32,10 @@ public class PromozioneController {
 	public String getPizzaWithPromo(Model model) {
 		
 		List<Promozione> promos = promoServ.findAll();
+		List<Pizza> pizzas = pizzaServ.findAll();
 		 
 		model.addAttribute("promos", promos);
+		model.addAttribute("pizzas",pizzas);
 		
 		return "pizzapromo";
 	}
@@ -68,6 +70,32 @@ public class PromozioneController {
 		Promozione p = opt.get();
 		
 		promoServ.delete(p);
+		
+		return "redirect:/promozioni";
+	}
+	
+	@GetMapping("/create/pizza-promo")
+	public String createPizzaPromo(Model model) {
+		
+		Pizza p = new Pizza();
+		List<Promozione> promozioni = promoServ.findAll();
+		
+		model.addAttribute("pizza", p);
+		model.addAttribute("promozioni",promozioni);
+		
+		return "create-pizza-promo";
+	}
+	
+	@PostMapping("/store/pizza-promo")
+	public String storePizzaPromo(@Valid Pizza pizza) {
+		
+		List<Promozione> pizzaPromos = pizza.getPromotions();
+		
+		for (Promozione promozione : pizzaPromos) {
+			promozione.setPizza(pizza);
+		}
+
+		pizzaServ.save(pizza);
 		
 		return "redirect:/promozioni";
 	}

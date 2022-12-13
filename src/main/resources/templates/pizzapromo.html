@@ -7,7 +7,7 @@
 <body>
 
 	<h1>Promos</h1>
-	<a href="/promozioni/create">Create</a>
+	<a href="/promozioni/create">Create promo</a>
 	
 	<ul>
 		<li th:each="promo : ${promos}" th:object="${promo}">
@@ -18,6 +18,19 @@
 			<ul>
 				<li th:each="pizza : ${promo.getPizza()}" th:object="${pizza}">
 					[[*{id}]] - [[*{name}]]
+				</li>
+			</ul>
+		</li>
+	</ul>
+	
+	<h1>Pizzas</h1>
+	<a href="/promozioni/create/pizza-promo">Create pizza with promo</a>
+	<ul>
+		<li th:each="pizza : ${pizzas}" th:object="${pizza}">
+			[[*{id}]] - [[*{name}]]
+			<ul>
+				<li th:each="promo : *{getPromotions()}" th:object="${promo}">
+					[[*{id}]] - [[*{title}]]
 				</li>
 			</ul>
 		</li>
