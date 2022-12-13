@@ -14,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -48,6 +49,9 @@ public class Pizza implements PriceableInt  {
 	@OneToMany(mappedBy = "pizza", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	private List<Promozione> promotions;
 	
+	@ManyToMany
+	private List<Ingredient> ingridients;
+	
 	public Pizza() { }
 	
 	public Pizza(String name, String description, int price ) {
@@ -58,8 +62,23 @@ public class Pizza implements PriceableInt  {
 		
 	}
 	
+	public Pizza(String name, String description, int price, List<Ingredient> ingredients) {
+		
+		setName(name);
+		setDescription(description);
+		setPrice(price);
+		setIngridients(ingredients);
+		
+	}
 	
-	
+	public List<Ingredient> getIngridients() {
+		return ingridients;
+	}
+
+	public void setIngridients(List<Ingredient> ingridients) {
+		this.ingridients = ingridients;
+	}
+
 	public List<Promozione> getPromotions() {
 		return promotions;
 	}

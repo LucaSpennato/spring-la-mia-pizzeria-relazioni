@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.Formatter;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,6 +13,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -22,13 +25,17 @@ public class Promozione {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@Column
 	@NotNull
 	private LocalDate startDate;
 	
+	@Column
 	@NotNull
 	private LocalDate endDate;
 	
-	@NotNull
+	@Column(unique = true)
+	@NotBlank(message = "Deve esserci un titolo")
+	@NotEmpty(message = "il titolo non può essere vuoto")
 	private String title;
 	
 	@ManyToOne
