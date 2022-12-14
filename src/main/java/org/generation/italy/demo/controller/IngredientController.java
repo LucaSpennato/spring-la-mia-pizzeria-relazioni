@@ -86,23 +86,36 @@ public class IngredientController {
 	@PostMapping("/update")
 	public String updateIngredient(@Valid Ingredient ingredient) {
 		
-		List<Pizza> pizzas = ingredient.getPizzas();
+		Optional<Ingredient> opt = is.findIngredientbyId(ingredient.getId());
 		
-		
-		System.err.println("CONTROLLER------------------------------");
-		System.err.println(ingredient);
-		
-		for (Pizza p : pizzas) {
-			
-			System.err.println("TESTING-----------------------------------------------");
-			System.err.println(p);
-			
-			p.addIngredients(ingredient);
-//			p.setIngredients(Arrays.asList(new Ingredient[] {ingredient}));				
-			
-			
+		if (!opt.isEmpty()) {
+			Ingredient ingr = opt.get();
+			for (Pizza pizza : ingr.getPizzas()) {
+				pizza.getIngredients().remove(ingr);
+			}
 		}
-			
+		
+		List<Pizza> pizzas = ingredient.getPizzas();
+		if (pizzas != null) {
+			for (Pizza pizza : pizzas) {
+				pizza.getIngredients().add(ingredient);
+			}
+		}
+//		List<Pizza> pizzas = ingredient.getPizzas();
+//		System.err.println("CONTROLLER------------------------------");
+//		System.err.println(ingredient);
+//		
+//		for (Pizza p : pizzas) {
+//			
+//			System.err.println("TESTING-----------------------------------------------");
+//			System.err.println(p);
+//			
+//			p.addIngredients(ingredient);
+////			p.setIngredients(Arrays.asList(new Ingredient[] {ingredient}));				
+//			
+//			
+//		}
+		
 		
 		is.save(ingredient);
 		
