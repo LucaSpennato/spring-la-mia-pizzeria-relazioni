@@ -14,6 +14,11 @@
 	<ul>
 		<li th:each="p : ${pizza}" th:object="${p}">
 			[[ *{getId()} ]] - [[*{name}]] - [[ *{price} ]]
+			<ul>
+				<li th:each="i : *{getIngredients()}" th:object="${i}">
+				[[*{id}]] - [[*{name}]]
+				</li>
+			</ul>
 			<div>
 				<a th:href="@{pizza/show/{id} (id = *{id})}">Show</a>
 				<a th:href="@{pizza/edit/{id} (id = *{getId()})}">Edit</a>

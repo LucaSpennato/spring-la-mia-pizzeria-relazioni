@@ -26,6 +26,16 @@
 		<label>Price</label>
 		<input type="number" name="price" th:field="${pizza.price}">
 		<br>
+		<div th:each="i : ${ingredients}" th:object="${i}">
+			<label>[[*{name}]]</label>
+			<input 
+			type="checkbox" 
+			name="ingredients"
+			th:value="*{id}"
+			th:field="${pizza.ingredients}"
+			>
+		</div>
+		
 		<button type="submit">add</button>
 	</form>
 
