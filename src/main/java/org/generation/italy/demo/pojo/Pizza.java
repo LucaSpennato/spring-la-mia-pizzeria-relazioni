@@ -49,8 +49,8 @@ public class Pizza implements PriceableInt  {
 	@OneToMany(mappedBy = "pizza", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	private List<Promozione> promotions;
 	
-	@ManyToMany
-	private List<Ingredient> ingridients;
+	@ManyToMany(fetch = FetchType.EAGER)
+	private List<Ingredient> ingredients;
 	
 	public Pizza() { }
 	
@@ -67,16 +67,16 @@ public class Pizza implements PriceableInt  {
 		setName(name);
 		setDescription(description);
 		setPrice(price);
-		setIngridients(ingredients);
+		setIngredients(ingredients);
 		
 	}
 	
-	public List<Ingredient> getIngridients() {
-		return ingridients;
+	public List<Ingredient> getIngredients() {
+		return ingredients;
 	}
 
-	public void setIngridients(List<Ingredient> ingridients) {
-		this.ingridients = ingridients;
+	public void setIngredients(List<Ingredient> ingridients) {
+		this.ingredients = ingridients;
 	}
 
 	public List<Promozione> getPromotions() {
@@ -118,7 +118,7 @@ public class Pizza implements PriceableInt  {
 	public String toString() {
 
 		
-		return getId() + " - " + getName() + " " + getPrice() + "$"; 
+		return getId() + " - " + getName() + " " + getPrice() + "$";
 	}
 	
 }

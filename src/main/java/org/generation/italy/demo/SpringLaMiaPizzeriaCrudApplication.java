@@ -117,9 +117,41 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		
 		List<Ingredient> ingr = Arrays.asList(new Ingredient[] {i1, i2 } );
 			
-		pizz.setIngridients(ingr);
+		pizz.setIngredients(ingr);
 		
 		P.save(pizz);
+		
+		Pizza pizz1 = P.findPizzaById(2).get();
+		
+		List<Ingredient> ingr1 = Arrays.asList(new Ingredient[] {i3, i2 } );
+			
+		pizz1.setIngredients(ingr1);
+		
+		P.save(pizz1);
+		
+		Pizza pizz2 = P.findPizzaById(3).get();
+		
+		List<Ingredient> ingr2 = Arrays.asList(new Ingredient[] {i2 } );
+			
+		pizz2.setIngredients(ingr2);
+		
+		P.save(pizz2);
+		
+		
+//		System.err.println("MANY TO MANY LATO PIZZA-------------------------------------------------------");
+//		Pizza pizzaTest = P.findPizzaById(1).get();
+//		for (Ingredient p : pizzaTest.getIngredients()) {
+//			System.err.println(p);
+//		}
+//	
+//		List<Pizza> pizzTesting = Arrays.asList(new Pizza[] {p3, p4});
+//		
+//		Ingredient ingrTest = is.findIngredientbyId(2).get();
+//		
+//		ingrTest.setPizzas(pizzTesting);
+//		
+//		is.save(ingrTest);
+		
 		
 	}
 
