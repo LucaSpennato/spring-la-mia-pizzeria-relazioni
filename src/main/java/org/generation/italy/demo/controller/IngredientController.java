@@ -121,4 +121,22 @@ public class IngredientController {
 		
 		return "redirect:/ingredient";
 	}
+	
+	@GetMapping("/delete/{id}")
+	public String deleteIngredient(@PathVariable("id") int id) {
+		
+		Optional<Ingredient> opt = is.findIngredientbyId(id);
+		Ingredient ingr = opt.get();
+		
+		if (!opt.isEmpty()) {
+			for (Pizza pizza : ingr.getPizzas()) {
+				pizza.getIngredients().remove(ingr);
+			}
+		}
+		
+		is.delete(ingr);
+		
+		
+		return "redirect:/ingredient";
+	}
 }
