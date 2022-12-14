@@ -13,6 +13,7 @@
 	<ul>
 		<li th:each="i : ${ingr}" th:object="${i}">
 			[[*{id}]] - [[*{name}]]
+			<a th:href="@{/ingredient/edit/{id} (id = *{id})}">Edit</a>
 			<ul>
 				<li th:each="pizza : *{getPizzas()}" th:object="${pizza}">
 					[[*{id}]] - [[*{name}]]

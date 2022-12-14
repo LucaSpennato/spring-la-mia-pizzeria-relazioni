@@ -5,23 +5,24 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	<h1>Edit a new ingredient</h1>
 	
-	<h1>Create a new ingredient</h1>
-	
-	<form action="/ingredient/store" method="POST" th:object="${ing}">
+	<form action="/ingredient/update" method="POST" th:object="${ing}">
 		
+		<input type="number" name="id" th:field="*{id}">
 		<label>Name:</label>
 		<input type="text" name="name" th:field="*{name}">
 		<br>
 		<div th:each="pizza : ${pizzas}" th:object="${pizza}">
 			
 			<label>[[*{name}]]</label>
-			<input type="checkbox" name="pizza" th:value="*{id}" th:field="${ing.pizzas}">
+			<input type="checkbox" th:value="*{id}" th:field="${ing.pizzas}">
 			
 		</div>
-		<button type="submit">Add</button>
+		<button type="submit">Edit</button>
 		
 	</form>
-	
+
 </body>
 </html>

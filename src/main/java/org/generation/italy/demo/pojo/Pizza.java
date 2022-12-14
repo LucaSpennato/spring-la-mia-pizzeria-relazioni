@@ -78,6 +78,17 @@ public class Pizza implements PriceableInt  {
 	public void setIngredients(List<Ingredient> ingridients) {
 		this.ingredients = ingridients;
 	}
+	
+	public void addIngredients(Ingredient ingredient) {
+		
+		boolean finded = false;
+		for (Ingredient i : getIngredients()) 
+			if (i.getId() == ingredient.getId())
+				finded = true;
+		
+		if (!finded) 
+			getIngredients().add(ingredient);
+	}
 
 	public List<Promozione> getPromotions() {
 		return promotions;
